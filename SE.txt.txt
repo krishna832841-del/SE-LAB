@@ -1,0 +1,587 @@
+SE LAB EXAM - COMMANDS CHEAT SHEET
+
+==================================================
+1. GIT - INITIALIZATION
+==================================================
+
+git init
+git status
+
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
+git config --list
+
+
+==================================================
+2. GIT - ADDING FILES
+==================================================
+
+git add filename
+git add .
+git status
+
+
+==================================================
+3. GIT - COMMIT
+==================================================
+
+git commit -m "Initial commit"
+git log
+git log --oneline
+
+
+==================================================
+4. GIT - BRANCHING
+==================================================
+
+git branch
+git branch feature
+git checkout feature
+git checkout -b feature
+git switch feature
+git branch -d feature
+
+
+==================================================
+5. GIT - MERGING
+==================================================
+
+git checkout main
+git merge feature
+git branch -d feature
+
+
+==================================================
+6. GIT - GITHUB / REMOTE
+==================================================
+
+git remote add origin <repository-url>
+git remote -v
+git branch -M main
+git push -u origin main
+git push
+git pull
+git fetch
+
+
+==================================================
+7. GIT - CLONE
+==================================================
+
+git clone <repository-url>
+
+
+==================================================
+8. GIT - UNDO / REMOVE
+==================================================
+
+git restore --staged filename
+git restore filename
+git rm filename
+git commit --amend -m "Updated commit"
+
+
+==================================================
+9. GIT - COMPLETE PRACTICAL
+==================================================
+
+mkdir project
+cd project
+git init
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin <repository-url>
+git push -u origin main
+
+
+==================================================
+10. DOCKER - BASIC COMMANDS
+==================================================
+
+docker --version
+docker info
+docker help
+
+
+==================================================
+11. DOCKER - IMAGES
+==================================================
+
+docker images
+docker pull nginx
+docker rmi nginx
+docker image prune
+
+
+==================================================
+12. DOCKER - CREATE AND RUN CONTAINER
+==================================================
+
+docker run nginx
+docker run -d nginx
+docker run -d --name mycontainer nginx
+docker run -d -p 8080:80 --name web nginx
+
+
+==================================================
+13. DOCKER - CONTAINER MANAGEMENT
+==================================================
+
+docker ps
+docker ps -a
+docker start mycontainer
+docker stop mycontainer
+docker restart mycontainer
+docker rm mycontainer
+docker rm -f mycontainer
+
+
+==================================================
+14. DOCKER - CONTAINER INFORMATION
+==================================================
+
+docker logs mycontainer
+docker logs -f mycontainer
+docker exec -it mycontainer bash
+docker exec -it mycontainer sh
+docker inspect mycontainer
+
+
+==================================================
+15. DOCKER - DOCKERFILE
+==================================================
+
+Create a file named:
+
+Dockerfile
+
+Dockerfile contents:
+
+FROM nginx
+COPY . /usr/share/nginx/html
+EXPOSE 80
+
+Build image:
+
+docker build -t myimage .
+
+Run image:
+
+docker run -d -p 8080:80 --name mycontainer myimage
+
+
+==================================================
+16. DOCKER - DOCKER COMPOSE
+==================================================
+
+Create:
+
+docker-compose.yml
+
+Example:
+
+services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+Commands:
+
+docker compose up
+docker compose up -d
+docker compose ps
+docker compose logs
+docker compose down
+
+
+==================================================
+17. MAVEN - CHECK INSTALLATION
+==================================================
+
+mvn -version
+java -version
+
+
+==================================================
+18. MAVEN - CREATE PROJECT
+==================================================
+
+mvn archetype:generate
+
+Quickstart:
+
+mvn archetype:generate -DgroupId=com.example -DartifactId=myapp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+cd myapp
+
+
+==================================================
+19. MAVEN - PROJECT STRUCTURE
+==================================================
+
+myapp
+|
+|-- pom.xml
+|
+|-- src
+    |-- main
+    |   |-- java
+    |       |-- App.java
+    |
+    |-- test
+        |-- java
+            |-- AppTest.java
+
+
+==================================================
+20. MAVEN - COMPILE
+==================================================
+
+mvn compile
+
+
+==================================================
+21. MAVEN - TEST
+==================================================
+
+mvn test
+
+
+==================================================
+22. MAVEN - PACKAGE
+==================================================
+
+mvn package
+
+JAR file is generally created inside:
+
+target/
+
+
+==================================================
+23. MAVEN - INSTALL
+==================================================
+
+mvn install
+
+
+==================================================
+24. MAVEN - CLEAN
+==================================================
+
+mvn clean
+mvn clean compile
+mvn clean package
+mvn clean install
+
+
+==================================================
+25. MAVEN - LIFECYCLE
+==================================================
+
+validate
+compile
+test
+package
+verify
+install
+deploy
+
+Most important:
+
+mvn clean
+mvn compile
+mvn test
+mvn package
+mvn install
+
+
+==================================================
+26. POM.XML - BASIC CODE
+==================================================
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>myapp</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>
+
+
+==================================================
+27. POM.XML - IMPORTANT TAGS
+==================================================
+
+<groupId>com.example</groupId>
+
+<artifactId>myapp</artifactId>
+
+<version>1.0-SNAPSHOT</version>
+
+<dependencies>
+    ...
+</dependencies>
+
+
+==================================================
+28. MAVEN - ADD DEPENDENCY
+==================================================
+
+Example JUnit:
+
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13.2</version>
+    <scope>test</scope>
+</dependency>
+
+Then run:
+
+mvn clean install
+
+
+==================================================
+29. SRS - STRUCTURE
+==================================================
+
+SRS = Software Requirements Specification
+
+1. Introduction
+2. Overall Description
+3. Functional Requirements
+4. Non-Functional Requirements
+5. External Interface Requirements
+6. System Requirements
+7. Constraints
+8. Assumptions
+
+
+==================================================
+30. SRS - INTRODUCTION
+==================================================
+
+1.1 Purpose
+1.2 Scope
+1.3 Definitions
+1.4 References
+1.5 Overview
+
+
+==================================================
+31. SRS - OVERALL DESCRIPTION
+==================================================
+
+2.1 Product Perspective
+2.2 Product Functions
+2.3 User Classes
+2.4 Operating Environment
+2.5 Constraints
+2.6 Assumptions
+
+
+==================================================
+32. SRS - FUNCTIONAL REQUIREMENTS
+==================================================
+
+FR1: User can register.
+FR2: User can login.
+FR3: User can search products.
+FR4: User can add products to cart.
+FR5: User can place an order.
+FR6: Admin can add products.
+FR7: Admin can delete products.
+
+
+==================================================
+33. SRS - NON-FUNCTIONAL REQUIREMENTS
+==================================================
+
+Performance
+Security
+Reliability
+Usability
+Scalability
+Availability
+Maintainability
+
+Examples:
+
+NFR1: The system should respond quickly.
+NFR2: User passwords must be securely stored.
+NFR3: The system should be highly available.
+
+
+==================================================
+34. SRS - EXTERNAL INTERFACES
+==================================================
+
+User Interface:
+Login page
+Registration page
+Dashboard
+
+Hardware Interface:
+Computer
+Mobile device
+Server
+
+Software Interface:
+Operating System
+Database
+Web Server
+
+Communication Interface:
+Internet
+HTTP/HTTPS
+TCP/IP
+
+
+==================================================
+35. SRS - SYSTEM REQUIREMENTS
+==================================================
+
+Hardware:
+
+Processor: Intel i3 or above
+RAM: 4 GB or above
+Storage: 10 GB
+
+Software:
+
+Operating System
+JDK
+Maven
+Database
+Web Browser
+Docker
+Git
+
+
+==================================================
+36. SRS - CONSTRAINTS
+==================================================
+
+Internet connection is required.
+System depends on database availability.
+Limited hardware resources.
+Security restrictions.
+Budget constraints.
+
+
+==================================================
+37. SRS - ASSUMPTIONS
+==================================================
+
+Users have basic computer knowledge.
+Users have internet access.
+The server is available.
+Users provide valid information.
+
+
+==================================================
+38. COMPLETE GIT + MAVEN + DOCKER FLOW
+==================================================
+
+Maven:
+
+mvn clean package
+
+Git:
+
+git init
+git add .
+git commit -m "Initial commit"
+
+Docker:
+
+docker build -t myapp .
+docker run -d --name myapp-container myapp
+docker ps
+
+
+==================================================
+39. MOST IMPORTANT COMMANDS - LAST MINUTE
+==================================================
+
+GIT:
+
+git init
+git status
+git add .
+git commit -m "message"
+git branch
+git checkout
+git merge
+git clone
+git remote -v
+git push
+git pull
+
+MAVEN:
+
+mvn -version
+mvn clean
+mvn compile
+mvn test
+mvn package
+mvn install
+
+DOCKER:
+
+docker --version
+docker pull nginx
+docker images
+docker build -t myimage .
+docker run -d -p 8080:80 myimage
+docker ps
+docker stop container
+docker start container
+docker rm container
+docker rmi image
+docker compose up
+docker compose down
+
+SRS:
+
+Introduction
+Overall Description
+Functional Requirements
+Non-Functional Requirements
+External Interfaces
+System Requirements
+Constraints
+Assumptions
